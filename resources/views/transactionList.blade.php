@@ -69,7 +69,7 @@
 	                      {{$data->amount}}
 	                    </td>
 	                    <td>
-	                      {{substr($data->created_at,0,10)}}
+	                      {{$data->created_at}}
 	                    </td>
 	                  </tr>
 	                @endforeach
