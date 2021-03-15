@@ -66,7 +66,10 @@
 	                      {{$data->note}}
 	                    </td>
 	                    <td>
-	                      {{$data->amount + ($data->amount * 0.02)}}
+	                    	@php
+	                    		$amount = Session::get('id') !== $data->id_user ? $data->amount + ($data->amount * 0.02) : $data->amount;
+	                    	@endphp
+	                      {{$amount}}
 	                    </td>
 	                    <td>
 	                      {{$data->created_at}}
