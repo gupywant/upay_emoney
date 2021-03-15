@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // READ CARD
-Route::get('readID',['as'=>'readID', 'uses'=>'operationalController@readID']);
+Route::post('readID',['as'=>'readID', 'uses'=>'operationalController@readID']);
