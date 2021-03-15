@@ -66,7 +66,7 @@
 	                      {{$data->note}}
 	                    </td>
 	                    <td>
-	                      {{$data->amount}}
+	                      {{$data->amount + ($data->amount * 0.02)}}
 	                    </td>
 	                    <td>
 	                      {{$data->created_at}}
