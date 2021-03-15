@@ -67,7 +67,7 @@
 	                    </td>
 	                    <td>
 	                    	@php
-	                    		$amount = Session::get('id') !== $data->id_user_plus ? $data->amount + ($data->amount * 0.02) : $data->amount;
+	                    		$amount = Session::get('id') === $data->id_user_plus ? $data->amount + ($data->amount * 0.02) : $data->amount;
 	                    	@endphp
 	                      {{$amount}}
 	                    </td>
