@@ -12,7 +12,10 @@ use Session;
 class userDataController extends Controller
 {
     public function addIndex(){
-    	return view('userAdd');
+        $id = Session::get('id');
+        $user = userModel::where('id_user', $id)->first();
+        $data['machine_id'] = $user->machine_id;
+    	return view('userAdd', $data);
     }
 
     public function add(Request $request){

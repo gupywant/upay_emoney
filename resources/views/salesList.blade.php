@@ -44,7 +44,6 @@
 	                <thead class="thead-light">
 	                  <tr>
 	                    <th scope="col" class="sort" data-sort="name">No</th>
-	                    <th scope="col" class="sort" width="20%" data-sort="status">Siswa ID</th>
 	                    <th scope="col" class="sort" data-sort="completion">Transaction Amount</th>
 	                    <th scope="col" class="sort" data-sort="completion">Transaction Date</th>
 	                  </tr>
@@ -57,9 +56,6 @@
 	                  <tr>
 	                    <td scope="row">
 	                      {{$no++}}
-	                    </td>
-	                    <td class="budget">
-	                      	{{$data->id_user_minus}}
 	                    </td>
 	                    <td>
 	                      {{$data->amount}}

@@ -16,7 +16,7 @@ var client = {
       	var date1 = new Date(jsonData.read_date);
         if (date1 >= date2) resolve({status:'DONE',card_id:jsonData.card_id});
         else resolve({status: `count: ${date1}`});
-      }, 1000);
+      }, 450);
     });
   }
 }

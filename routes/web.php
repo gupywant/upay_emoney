@@ -52,7 +52,8 @@ Route::middleware('sessionHasLoged')->prefix('user')->group(function () {
 	Route::get('salesReport',['as'=>'salesList', 'uses'=>'reportController@salesList']);
 	Route::get('transactionReport',['as'=>'transactionList', 'uses'=>'reportController@transactionList']);
 
-
+	Route::post('changePassword',['as'=>'changePassword', 'uses'=>'loginController@changePassword']);
+	Route::get('resetPassword/{id}',['as'=>'resetPassword', 'uses'=>'loginController@resetPassword']);
 	Route::get('logout',['as'=>'logout', 'uses'=>'loginController@logout']);
 });
 //

@@ -95,7 +95,8 @@
 	                        </a>
 	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 	                          <a class="dropdown-item" href="{{route('userEditGet',$data->id_user)}}">Edit</a>
-	                          <a class="dropdown-item" href="{{--route('user.serviceDelete',$data->id_item)--}}">Delete</a>
+	                          <a class="dropdown-item" href="{{route('resetPassword',$data->id_user)}}">Reset Password</a>
+	                          <a class="dropdown-item" href="{{route('resetPassword',$data->id_user)}}">Delete</a>
 	                        </div>
 	                      </div>
 	                    </td>

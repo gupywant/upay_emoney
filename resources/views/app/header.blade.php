@@ -60,6 +60,7 @@
               </a>
             </li>
           </ul>
+          @if(Session::get('user_type') === 'Admin')
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
@@ -98,6 +99,8 @@
               </a>
             </li>
           </ul>
+          @endif
+          @if(Session::get('user_type') === 'Admin' or Session::get('user_type') === 'Penjual')
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
@@ -111,7 +114,8 @@
                 <span class="nav-link-text">Read Tag ID</span>
               </a>
             </li>
-          </ul>       
+          </ul>
+          @if(Session::get('user_type') === 'Penjual')     
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
               <a class="nav-link" href="{{route('transactionGet')}}">
@@ -120,6 +124,8 @@
               </a>
             </li>
           </ul>
+          @endif
+          @if(Session::get('user_type') === 'Admin')
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
               <a class="nav-link" href="{{route('topupGet')}}">
@@ -128,11 +134,15 @@
               </a>
             </li>
           </ul>
+          @endif
+          @endif
+          @if(Session::get('user_type') === 'Siswa' or Session::get('user_type') === 'Penjual')
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
             <span class="docs-normal">Report</span>
           </h6>
+          @if(Session::get('user_type') === 'Penjual')
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
@@ -141,7 +151,9 @@
                 <span class="nav-link-text">Sales Report</span>
               </a>
             </li>
-          </ul>          
+          </ul>
+          @endif
+          @if(Session::get('user_type') === 'Siswa')      
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
               <a class="nav-link" href="{{route('transactionList')}}">
@@ -150,6 +162,8 @@
               </a>
             </li>
           </ul>
+          @endif
+          @endif
           <!-- Divider -->
           <hr class="my-3">
           <!-- Heading -->
@@ -240,7 +254,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post">
+        <form action="{{route('changePassword')}}" method="post">
           {{csrf_field()}}
           <div class="row">
               <div class="col-lg-12">

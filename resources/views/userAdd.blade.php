@@ -1,30 +1,42 @@
 @extends('/app/app')
 @section('content')
 <script type="text/javascript">
-  window.addEventListener("load", function() {
-  var limit = 1;
-  document.getElementById("add").addEventListener("click", function() {
-    // Create a div
-    if(limit>0){
-      var div = document.createElement("div");
-      div.setAttribute("class","form-group");
-      // Create a file input
-      var file = document.createElement("input");
-      file.setAttribute("type", "file");
-      file.setAttribute("class", "form-control-file")
-      file.setAttribute("name", "foto[]"); // You may want to change this
-      file.setAttribute("multiple","");
+let count = 0;
+var date2 = new Date();
+var status = null
 
-      // add the file and text to the div
-      div.appendChild(file);
-      limit = limit+1;
-      //Append the div to the container div
-      document.getElementById("container").appendChild(div);
-    }else{
-      alert('Maximal 3 gambar');
+var client = {
+  get: function () {
+    return new Promise(function (resolve, reject) {
+      var jsonData = ''
+      fetch('/filesdat/{{ $machine_id }}/data.json')
+		  .then(response => response.json())
+		  .then(data => jsonData = data);
+      setTimeout(function () {
+      	var date1 = new Date(jsonData.read_date);
+        if (date1 >= date2) resolve({status:'DONE',card_id:jsonData.card_id});
+        else resolve({status: `count: ${date1}`});
+      }, 450);
+    });
+  }
+}
+
+
+async function someFunction() {
+  while (true) {
+    let dataResult = await client.get('/status');
+    if (dataResult.status == "DONE") {
+      document.getElementById("card_id").value = dataResult.card_id
+      return dataResult;
     }
-  });
-});
+  }
+}
+
+(async () => { let r = await someFunction(); console.log(r); })();
+
+  fetch('/filesdat/{{ $machine_id }}/data.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
 </script>
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
@@ -87,7 +99,7 @@
 	                    <div class="col-lg-6">
 	                      <div class="form-group">
 	                        <label class="form-control-label" for="input-username">Card ID</label>
-	                        <input type="text" name="card_id" id="input-username" class="form-control" placeholder="Card ID" required="">
+	                        <input type="text" id="card_id" name="card_id" id="input-username" class="form-control" placeholder="Card ID" required="">
 	                      </div>
 	                    </div>
 	                    <div class="col-lg-6">

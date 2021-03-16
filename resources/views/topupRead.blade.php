@@ -10,7 +10,7 @@ var client = {
       setTimeout(function () {
         if (count > 4) resolve({status:'DONE',otherStuff:'Other Stuff'});
         else resolve({status: `count: ${count}`});
-      }, 1000);
+      }, 450);
     });
   }
 }
