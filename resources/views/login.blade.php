@@ -19,7 +19,7 @@
   <meta name="author" content="Creative Tim">
   <title>Admin Login</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ URL::asset('/assets_admin/img/brand/favicon.png') }}" type="image/png">
+  <link rel="icon" href="{{ URL::asset('/assets_admin/img/brand/logo.png') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -29,12 +29,12 @@
   <link rel="stylesheet" href="{{ URL::asset('/assets_admin/css/argon.css?v=1.2.0')}}" type="text/css">
 </head>
 
-<body style="background-color: #046546 !important;">
+<body style="background-color: #5787c3 !important;">
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="#">
-        UPAY Login
+        PAYU Login
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header py-2 py-lg-5 pt-lg-6 " style="background: linear-gradient(87deg, #02a26e 0, #1e6f55 100%) !important;">
+    <div class="header py-1 py-lg-1 pt-lg-6 " style="background: linear-gradient(87deg, #77a9e8 0, #77a9e8 100%) !important;">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -72,12 +72,12 @@
       </div>
       <div class="separator separator-bottom separator-skew zindex-100">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon style="fill: #046546;" points="2560 0 2560 100 0 100"></polygon>
+          <polygon style="fill: #5787c3;" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt-1 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">

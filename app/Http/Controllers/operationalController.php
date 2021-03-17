@@ -134,6 +134,55 @@ class operationalController extends Controller
     	return back()->with('message','Berhasil Top Up');
     }
 
+    public function withdrawIndex(Request $request) {
+        $id = Session::get('id');
+        $user = userModel::where('id_user', $id)->first();
+        $data['machine_id'] = $user->machine_id;
+        return view('withdraw', $data);
+    }
+
+    public function withdrawReadedIndex(Request $request, $card_id) {
+        $user = userModel::where('card_id', $card_id)->first();
+        if(!empty($user)){
+            $data['card_id'] = $card_id;
+            $data['total_balance'] = $user->amount;
+            return view('withdrawRead', $data);
+        }else{
+            return back()->with('alert','Kartu salah atau belum terdaftar!!');
+        }
+    }
+
+    public function withdrawAdd(Request $request, $card_id) {
+
+        date_default_timezone_set("Asia/jakarta");
+
+        $date = Date('Y-m-d H:i:s');
+
+        $user = userModel::where('card_id', $card_id)->first();
+    
+        if($request->amount < $user->amount){
+            $add = new transactionModel;
+            $add->amount = $request->amount;
+            $add->note = "Withdraw";
+            $add->id_user_minus = 1;
+            $add->id_user_plus = $user->id_user;
+            $add->updated_at = $date;
+            $add->created_at = $date;
+            $add->save();
+
+            $update = array(
+                'amount' => $user->amount - $request->amount
+            );
+
+            userModel::where('card_id',$card_id)->update($update);
+
+
+            return back()->with('message','Berhasil Withdraw');
+        }else{
+            return back()->with('alert','Penarikan melebih saldo!!');
+        }
+    }
+
     public function readID(Request $request) {
 
         $path = public_path().'/filesdat/'.$request->machine_id;

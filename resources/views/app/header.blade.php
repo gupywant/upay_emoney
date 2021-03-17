@@ -134,6 +134,14 @@
               </a>
             </li>
           </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('withdrawGet')}}">
+                <i class="fa fa-minus text-blue"></i>
+                <span class="nav-link-text">Withdraw</span>
+              </a>
+            </li>
+          </ul>
           @endif
           @endif
           @if(Session::get('user_type') === 'Siswa' or Session::get('user_type') === 'Penjual')

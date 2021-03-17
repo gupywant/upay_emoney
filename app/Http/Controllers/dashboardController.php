@@ -21,7 +21,7 @@ class dashboardController extends Controller
     		$data['total_canteen'] = userModel::where('user_type', 2)->count();
     	}else if($user_type === 'Penjual'){
     		$data['card_1'] = false;
-    		$data['card_2'] = true;
+    		$data['card_2'] = false;
     		$data['card_3'] = true;
     		$data['card_4'] = false;
     		$total_amount = userModel::where('id_user', Session::get('id'))->first();
@@ -37,7 +37,7 @@ class dashboardController extends Controller
     		$data['total_amount'] = $total_amount;
     		$total_amount_this_week = transactionModel::where('id_user_minus', Session::get('id'))->sum('amount');
     		$data['total_amount_this_week'] =  ($total_amount_this_week * 0.02) + $total_amount_this_week;
-    		$data['transaction'] = transactionModel::where('id_user_minus', Session::get('id'))->orderBy('created_at','desc')->limit(5)->get();
+    		$data['transaction'] = transactionModel::where('id_user_minus', Session::get('id'))->orWhere('id_user_plus', Session::get('id'))->orderBy('created_at','desc')->limit(5)->get();
     	}
     	return view('adminDashboard',$data);
     }

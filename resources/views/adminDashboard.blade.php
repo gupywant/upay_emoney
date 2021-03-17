@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Saldo</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Balance</h5>
                       <span class="h2 font-weight-bold mb-0">Rp.&nbsp;{{number_format($total_amount->amount)}}</span>
                     </div>
                     <!--div class="col-auto">
@@ -42,7 +42,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Transaksi</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Transaction</h5>
                       <span class="h2 font-weight-bold mb-0">Rp.&nbsp;{{number_format($total_amount_this_week)}}</span>
                     </div>
                     <!--div class="col-auto">
@@ -66,7 +66,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Penghasilan</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Income</h5>
                       <span class="h2 font-weight-bold mb-0">Rp.&nbsp;{{number_format($total_amount)}}</span>
                     </div>
                     <div class="col-auto">
@@ -89,7 +89,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Kantin Aktif</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Active Canteen</h5>
                       <span class="h2 font-weight-bold mb-0">{{$total_canteen}}</span>
                     </div>
                     <div class="col-auto">
@@ -115,13 +115,28 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Transaksi Terakhir (5)</h3>
+              <!-- Card header -->
+              <div class="card-header border-0">
+                  <h3 class="mb-0">Last Transaction (5)</h3>
+                  <div class="row">
+                  <div class="col-sm-12">
+                    @if(session('message'))
+                    <div class="card-header bg-transparent pb-2">
+                      <div class="alert alert-success">
+                        <strong>Sukses!</strong> {!!session('message')!!}.
+                      </div>
+                    </div>
+                    @endif
+                    @if(session('alert'))
+                    <div class="card-header bg-transparent pb-2">
+                      <div class="alert alert-danger">
+                        <strong>Gagal!</strong> {!!session('alert')!!}.
+                      </div>
+                    </div>
+                    @endif
+                  </div>
                 </div>
               </div>
-            </div>
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
@@ -129,6 +144,7 @@
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Note</th>
                     <th scope="col">Tanggal Transaksi</th>
                   </tr>
                 </thead>
@@ -143,10 +159,16 @@
                       </th>
                       <td>
                         @if(Session::get('user_type') === 'Siswa')
-                          {{number_format(($data->amount * 0.02) + $data->amount,0,'.',',')}}
+                          @php
+                            $amount = Session::get('id') !== $data->id_user_plus ? $data->amount + ($data->amount * 0.02) : $data->amount;
+                          @endphp
+                          {{number_format($amount,0,'.',',')}}
                         @else
                           {{number_format($data->amount,0,'.',',')}}
                         @endif
+                      </td>
+                      <td>
+                        {{$data->note}}
                       </td>
                       <td>
                         {{$data->created_at}}

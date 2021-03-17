@@ -48,6 +48,10 @@ Route::middleware('sessionHasLoged')->prefix('user')->group(function () {
 	Route::get('topup/{card_id}',['as'=>'topupReadedGet', 'uses'=>'operationalController@topupReadedIndex']);
 	Route::post('topup/{card_id}',['as'=>'topupReadedPost', 'uses'=>'operationalController@topupAdd']);
 
+	Route::get('withdraw',['as'=>'withdrawGet', 'uses'=>'operationalController@withdrawIndex']);
+	Route::get('withdraw/{card_id}',['as'=>'withdrawReadedGet', 'uses'=>'operationalController@withdrawReadedIndex']);
+	Route::post('withdraw/{card_id}',['as'=>'withdrawReadedPost', 'uses'=>'operationalController@withdrawAdd']);
+
 	// REPORT CONTROLLER AREA
 	Route::get('salesReport',['as'=>'salesList', 'uses'=>'reportController@salesList']);
 	Route::get('transactionReport',['as'=>'transactionList', 'uses'=>'reportController@transactionList']);
